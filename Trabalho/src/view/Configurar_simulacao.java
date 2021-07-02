@@ -7,7 +7,7 @@ package view;
 
 /**
  *
- * @author Brenda Paetzoldt
+ * @author Brenda Paetzoldt e Robson de Jesus
  */
 public class Configurar_simulacao extends javax.swing.JFrame {
 
