@@ -184,4 +184,9 @@ public class TelaInicial extends javax.swing.JFrame implements ObsJogo {
     private javax.swing.JButton jb_mapa2;
     private javax.swing.JButton jb_mapa3;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void escolheMapa() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

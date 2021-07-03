@@ -10,5 +10,7 @@ package observer;
  * @author Brenda Paetzoldt e Robson de Jesus
  */
 public interface ObsJogo {
+
+    public void escolheMapa();
     
 }
