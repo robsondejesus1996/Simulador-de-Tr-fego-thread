@@ -5,17 +5,33 @@
  */
 package view;
 
+import observer.ObsMapa;
+import controller.CMapa;
+
 /**
  *
  * @author Brenda Paetzoldt e Robson de Jesus
  */
-public class Configurar_simulacao extends javax.swing.JFrame {
+public class Simulacao extends javax.swing.JFrame implements ObsMapa {
+
+    private CMapa controleMapa;
+
+    private static Simulacao instance = null;
+
+    public static Simulacao getIntance() {
+        if (instance == null) {
+            instance = new Simulacao();
+        }
+        return instance;
+    }
 
     /**
      * Creates new form Configurar_simulacao
      */
-    public Configurar_simulacao() {
+    public Simulacao() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -30,6 +46,8 @@ public class Configurar_simulacao extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jtxt_qtdVeliculos = new javax.swing.JTextField();
         jPanel_mapa = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jB_simular = new javax.swing.JButton();
         jB_finalizar = new javax.swing.JButton();
 
@@ -44,15 +62,31 @@ public class Configurar_simulacao extends javax.swing.JFrame {
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout jPanel_mapaLayout = new javax.swing.GroupLayout(jPanel_mapa);
         jPanel_mapa.setLayout(jPanel_mapaLayout);
         jPanel_mapaLayout.setHorizontalGroup(
             jPanel_mapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel_mapaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel_mapaLayout.setVerticalGroup(
             jPanel_mapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 455, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
 
         jB_simular.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -88,7 +122,7 @@ public class Configurar_simulacao extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel_mapa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jB_finalizar, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE))
+                .addComponent(jB_finalizar, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
         );
 
         pack();
@@ -115,20 +149,21 @@ public class Configurar_simulacao extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Configurar_simulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Simulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Configurar_simulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Simulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Configurar_simulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Simulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Configurar_simulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Simulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Configurar_simulacao().setVisible(true);
+                new Simulacao().setVisible(true);
             }
         });
     }
@@ -138,6 +173,8 @@ public class Configurar_simulacao extends javax.swing.JFrame {
     private javax.swing.JButton jB_simular;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel_mapa;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jtxt_qtdVeliculos;
     // End of variables declaration//GEN-END:variables
 }

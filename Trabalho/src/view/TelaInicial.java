@@ -5,11 +5,25 @@
  */
 package view;
 
+import controller.CJogo;
+import observer.ObsJogo;
+
 /**
  *
  * @author Brenda Paetzoldt e Robson de Jesus
  */
-public class TelaInicial extends javax.swing.JFrame {
+public class TelaInicial extends javax.swing.JFrame implements ObsJogo {
+
+       private CJogo controlMap;
+
+    private static TelaInicial instance = null;
+
+    public static TelaInicial getIntance() {
+        if (instance == null) {
+            instance = new TelaInicial();
+        }
+        return instance;
+    }
 
     /**
      * Creates new form Main
