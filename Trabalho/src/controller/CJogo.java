@@ -1,9 +1,9 @@
 package controller;
 
+import controller.observador.NovoJogoObservador;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import observer.ObsJogo;
 
 /**
  *
@@ -29,18 +29,18 @@ public class CJogo {
         notificaNovoJogo();
     }
 
-    private List<ObsJogo> criaObsJogo = new ArrayList<>();
+    private List<NovoJogoObservador> criaObsJogo = new ArrayList<>();
 
-    public void attachMap(ObsJogo obs) {
+    public void attachMap(NovoJogoObservador obs) {
         this.criaObsJogo.add(obs);
     }
 
-    public void detach(ObsJogo obs) {
+    public void detach(NovoJogoObservador obs) {
         this.criaObsJogo.remove(obs);
     }
 
     private void notificaNovoJogo() {
-        for (ObsJogo obs : criaObsJogo) {
+        for (NovoJogoObservador obs : criaObsJogo) {
             obs.escolheMapa();
         }
     }

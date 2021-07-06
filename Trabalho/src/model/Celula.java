@@ -96,6 +96,11 @@ public abstract class Celula {
     public void setPosicaoX(int posicaoX) {
         this.posicaoX = posicaoX;
     }
+    
+    
+    public void adicionarProxCelula(Celula novaCelula){
+        this.proxCelula.add(novaCelula);
+    }
 
     public int getPosicaoY() {
         return posicaoY;

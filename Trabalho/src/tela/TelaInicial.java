@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package tela;
 
 import controller.CJogo;
+import controller.observador.NovoJogoObservador;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import observer.ObsJogo;
+
 
 /**
  *
  * @author Brenda Paetzoldt e Robson de Jesus
  */
-public class TelaInicial extends javax.swing.JFrame implements ObsJogo {
+public class TelaInicial extends javax.swing.JFrame implements NovoJogoObservador {
 
     CJogo controlMap;
     Simulacao simulacao;

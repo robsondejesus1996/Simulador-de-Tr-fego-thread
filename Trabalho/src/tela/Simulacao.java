@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package tela;
 
-import observer.ObsMapa;
 import controller.CMapa;
+import controller.observador.MapaObservador;
 
 /**
  *
  * @author Brenda Paetzoldt e Robson de Jesus
  */
-public class Simulacao extends javax.swing.JFrame implements ObsMapa {
+public class Simulacao extends javax.swing.JFrame implements MapaObservador {
 
     private CMapa controleMapa;
 
@@ -177,4 +177,34 @@ public class Simulacao extends javax.swing.JFrame implements ObsMapa {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jtxt_qtdVeliculos;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void definirQuatCarros(int value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void definirQuatCarrosErro() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void definirTabela(int[][] matriz, int rows, int collums) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void redefinirPintar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void definirBotao(boolean on) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void velocidadeInvalida() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
