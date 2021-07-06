@@ -158,7 +158,8 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
         controleMapa.iniciar();
         int qtdCarros = 1;
         controleMapa.definirCarros(qtdCarros);
-        
+
+
     }//GEN-LAST:event_jB_simularActionPerformed
 
     private void jB_finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_finalizarActionPerformed
@@ -236,11 +237,29 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
     }
 
     public ImageIcon paint(int fila, int coluna, int matriz[][]) {
-        if (matriz[fila][coluna] == 0) {
-            return quarteirao;
-        } else {
-            return controleMapa.estrada(fila, coluna);
+        int num = matriz[fila][coluna];
+
+        switch (num) {
+            case 0:
+                return quarteirao;
+            case 1:
+                return controleMapa.estradaEsq(fila, coluna);
+            case 2:
+                return controleMapa.estradaCima(fila, coluna);
+            case 3:
+                return controleMapa.estradaDir(fila, coluna);
+            case 4:
+                return controleMapa.estradaBaixo(fila, coluna);
+            case 12:
+                return controleMapa.estrada12(fila, coluna);
+            case 10:
+                return controleMapa.estrada10(fila, coluna);
+            case 11:
+                return controleMapa.estrada11(fila, coluna);
+            case 9:
+                return controleMapa.estrada9(fila, coluna);
         }
+        return quarteirao;
 
     }
 
