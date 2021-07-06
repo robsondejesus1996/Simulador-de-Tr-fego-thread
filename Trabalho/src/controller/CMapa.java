@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import model.Carro;
@@ -226,30 +227,58 @@ public class CMapa {
             carro.definicaoImagem(currentDir);
         }
     }
-    
-    
-    
-    public Icon getImagem(int coluna, int filas){
+
+    public Icon getImagem(int coluna, int filas) {
         return new ImageIcon();
     }
-    
-    
-    
-    public void carregarMapa(){
-        
+
+    public void carregarMapa() {
+
     }
-    
+
     private List<MapaObservador> mapObserver = new ArrayList<>();
-    
-    
-    public void notificarRepintar(){
-        for(MapaObservador obs: mapObserver){
+
+    public void notificarRepintar() {
+        for (MapaObservador obs : mapObserver) {
             obs.redefinirPintar();
         }
     }
 
+    public int getQuantiCarros() {
+        return quantidadeCarros;
+    }
     
-   
+    
+    public int getQuantiCarros() {
+        return quantidadeCarros;
+    }
+
+    public void spawnCar() {
+        List<Celula> roads = new ArrayList();
+        for (Celula[] roadLine : matrizCelula) {
+            for (Celula road : roadLine) {
+                if (road != null && road.isSpawner()) {
+                    roads.add(road);
+                }
+            }
+        }
+        Random rand = new Random();
+        printCar(roads.get(rand.nextInt(roads.size())));
+
+    }
+
+    private void printCar(Celula road) {
+        road.receberCarro(createCar(road));
+    }
+
+    private Carro createCar(Celula road) {
+        Carro newCar = new Carro(carroId++, road);
+        setCarImage(newCar);
+        CCarro driver = new CCarro(newCar, this.carroVeloc);
+        driver.start();
+        return newCar;
+    }
+
 //    private int numMapa;
 //    private int fila;
 //    private int coluna;
