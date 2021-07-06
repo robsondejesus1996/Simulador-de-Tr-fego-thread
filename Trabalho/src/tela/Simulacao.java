@@ -158,7 +158,7 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
         controleMapa.iniciar();
         int qtdCarros = 1;
         controleMapa.definirCarros(qtdCarros);
-
+        
     }//GEN-LAST:event_jB_simularActionPerformed
 
     private void jB_finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_finalizarActionPerformed
