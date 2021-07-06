@@ -35,7 +35,7 @@ public class Carro {
     
     
     public void definicaoImagem(int direcao){
-        this.imagem = "./assets/Car" + getCarroTipo() + "Dir" + direcao + ".jpg";
+        this.imagem = "./quarteiroes/carroAmarelo.png";
     }
 
     public int getCarroId() {

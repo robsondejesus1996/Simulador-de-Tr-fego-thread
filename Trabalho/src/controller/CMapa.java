@@ -334,7 +334,7 @@ public class CMapa {
 
     public ImageIcon estrada(int row, int collumn) {
         if (matrizCelula[row][collumn].getCarro() == null) {
-            return new ImageIcon("./assets/asfalto.jpg");
+            return new ImageIcon("./quarteiroes/rua.png");
         }
         return new ImageIcon(matrizCelula[row][collumn].getCarro().getImagem());
     }

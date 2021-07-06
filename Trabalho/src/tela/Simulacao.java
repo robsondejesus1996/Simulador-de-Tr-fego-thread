@@ -7,6 +7,13 @@ package tela;
 
 import controller.CMapa;
 import controller.observador.MapaObservador;
+import java.awt.Dimension;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -31,6 +38,11 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
     public Simulacao() {
         initComponents();
         setLocationRelativeTo(null);
+        controleMapa = CMapa.getIntance();
+        controleMapa.anexarMapa(this);
+        setResizable(false);
+        controleMapa.carregarMapa();
+        jB_finalizar.setEnabled(false);
 
     }
 
@@ -91,9 +103,19 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
 
         jB_simular.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jB_simular.setText("Simular");
+        jB_simular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_simularActionPerformed(evt);
+            }
+        });
 
         jB_finalizar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jB_finalizar.setText("Finalizar simulação");
+        jB_finalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_finalizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,41 +154,17 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxt_qtdVeliculosActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Simulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Simulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Simulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Simulacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void jB_simularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_simularActionPerformed
+        controleMapa.iniciar();
+        int qtdCarros = 1;
+        controleMapa.definirCarros(qtdCarros);
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Simulacao().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_jB_simularActionPerformed
+
+    private void jB_finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_finalizarActionPerformed
+        controleMapa.parar();
+    }//GEN-LAST:event_jB_finalizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jB_finalizar;
@@ -178,9 +176,13 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
     private javax.swing.JTextField jtxt_qtdVeliculos;
     // End of variables declaration//GEN-END:variables
 
+    JLabel imageLabel = new JLabel();
+    private ImageIcon quarteirao = new ImageIcon("./quarteiroes/1.png");
+
     @Override
     public void definirQuatCarros(int value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jtxt_qtdVeliculos.setText("" + value);
+
     }
 
     @Override
@@ -189,18 +191,74 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
     }
 
     @Override
-    public void definirTabela(int[][] matriz, int rows, int collums) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void definirTabela(int[][] matriz, int filas, int colunas) {
+
+        DefaultTableModel modeloTab = new DefaultTableModel() {
+
+            @Override
+            public int getRowCount() {
+                return controleMapa.getFilas();
+            }
+
+            @Override
+            public int getColumnCount() {
+                return controleMapa.getColunas();
+            }
+
+            @Override
+            public Object getValueAt(int Filai, int colunaI) {
+                try {
+                    return paint(Filai, colunaI, matriz);
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e.toString());
+                    return null;
+                }
+            }
+        };
+
+        modeloTab.setRowCount(filas);
+        modeloTab.setColumnCount(colunas);
+        jTable1.setRowHeight(40);
+        jTable1.setModel(modeloTab);
+        jTable1.setOpaque(false);
+        jTable1.setDefaultRenderer(Object.class, new ImagemMapa());
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setPreferredSize(new Dimension(0, 0));
+        for (int i = 0; i < jTable1.getColumnModel().getColumnCount(); i++) {
+            TableColumn column = jTable1.getColumnModel().getColumn(i);
+            column.setHeaderRenderer(renderer);
+            column.setPreferredWidth(40);
+        }
+
+        jTable1.setIntercellSpacing(new Dimension(0, 0));
+
+    }
+
+    public ImageIcon paint(int fila, int coluna, int matriz[][]) {
+        if (matriz[fila][coluna] == 0) {
+            return quarteirao;
+        } else {
+            return controleMapa.estrada(fila, coluna);
+        }
+
     }
 
     @Override
     public void redefinirPintar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        jTable1.repaint();
     }
 
     @Override
     public void definirBotao(boolean on) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (on) {
+            jB_simular.setEnabled(false);
+            jB_finalizar.setEnabled(true);
+        } else {
+            jB_simular.setEnabled(true);
+            jB_finalizar.setEnabled(false);
+
+        }
     }
 
     @Override
