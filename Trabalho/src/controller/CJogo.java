@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import observer.ObsJogo;
@@ -22,7 +23,7 @@ public class CJogo {
         return instance;
     }
 
-    public void escolherMapa(int id, boolean modo) {
+    public void escolherMapa(int id, boolean modo) throws IOException {
         CMapa cm = CMapa.getIntance();
         cm.setMapa(id, modo);
         notificaNovoJogo();

@@ -36,8 +36,7 @@ public class CMapa {
 
    public void setMapa(int id, boolean modo) throws IOException{
         this.numMapa = id;
-        String arquivo = "./Malhas/malha" + numMapa + ".txt";
-        BufferedReader in = new BufferedReader(new FileReader(arquivo));
+        BufferedReader in = new BufferedReader(new FileReader("./malhas/malha" + numMapa + ".txt"));
         this.fila = Integer.parseInt(in.readLine());
         this.coluna = Integer.parseInt(in.readLine());
         matriz = new int[fila][coluna];
