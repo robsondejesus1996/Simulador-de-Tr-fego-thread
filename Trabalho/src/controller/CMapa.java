@@ -4,6 +4,8 @@ import controller.observador.MapaObservador;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -56,18 +58,22 @@ public class CMapa {
 
     public void definirMapa(int id, boolean modo) throws IOException {
         this.mapaId = id;
-        BufferedReader in = new BufferedReader(new FileReader("./malhas/malha" + mapaId + ".txt"));
-        this.filas = Integer.parseInt(in.readLine());
-        this.colunas = Integer.parseInt(in.readLine());
-        matriz = new int[filas][colunas];
-        for (int i = 0; i < filas; i++) {
-            String fila[] = in.readLine().split("\t");
-            for (int j = 0; j < colunas; j++) {
-                matriz[i][j] = Integer.parseInt(fila[j]);
+        try {
+            BufferedReader in = new BufferedReader(new FileReader("./malhas/malha" + mapaId + ".txt"));
+            this.filas = Integer.parseInt(in.readLine());
+            this.colunas = Integer.parseInt(in.readLine());
+            matriz = new int[filas][colunas];
+            for (int i = 0; i < filas; i++) {
+                String fila[] = in.readLine().split("\t");
+                for (int j = 0; j < colunas; j++) {
+                    matriz[i][j] = Integer.parseInt(fila[j]);
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-    }
+        converterMatrizCelula(modo);
+    }   
 
     private void converterMatrizCelula(boolean isMutex) {
         matrizCelula = new Celula[this.filas][this.colunas];
@@ -365,8 +371,7 @@ public class CMapa {
             obs.definirBotao(on);
         }
     }
-    
-    
+
     public void anexarMapa(MapaObservador obs) {
         this.mapObserver.add(obs);
     }
@@ -374,8 +379,7 @@ public class CMapa {
     public void separar(MapaObservador obs) {
         this.mapObserver.remove(obs);
     }
-    
-    
+
     public void definirInsercaoCarro(int velocidade) {
         spawn.setVelocidade(velocidade);
 
