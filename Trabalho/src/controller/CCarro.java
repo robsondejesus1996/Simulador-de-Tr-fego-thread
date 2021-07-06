@@ -69,13 +69,13 @@ public class CCarro extends Thread {
                     this.car.setEstradaVelha(this.car.getEstradaAtual());
                     this.car.setEstradaAtual(this.car.getEstradaAtual().getProxCelula().get(0));
                 }
-                controller.setCarImage(car);
+                controller.definirCarroImagem(car);
                 controller.notificarRepintar();
             }
 
             //Destroi o carro quando chega no fim
             sleep(velocidade);
-            controller.setCarImage(car);
+            controller.definirCarroImagem(car);
             this.car.getEstradaAtual().removerCarro();
             controller.notificarRepintar();
             controller.getSpawn().removerCarro();

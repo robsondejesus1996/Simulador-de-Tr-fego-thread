@@ -110,7 +110,9 @@ public abstract class Celula {
         this.posicaoY = posicaoY;
     }
     
-    
+    public void setIsSpawner(boolean isSpawner) {
+        this.Spawner = isSpawner;
+    }
     
 
 }

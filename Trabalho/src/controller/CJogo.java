@@ -25,7 +25,7 @@ public class CJogo {
 
     public void escolherMapa(int id, boolean modo) throws IOException {
         CMapa cm = CMapa.getIntance();
-        cm.setMapa(id, modo);
+        cm.definirMapa(id, modo);
         notificaNovoJogo();
     }
 

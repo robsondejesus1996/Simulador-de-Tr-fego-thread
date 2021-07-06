@@ -54,7 +54,7 @@ public class CMapa {
         return filas;
     }
 
-    public void setMapa(int id, boolean modo) throws IOException {
+    public void definirMapa(int id, boolean modo) throws IOException {
         this.mapaId = id;
         BufferedReader in = new BufferedReader(new FileReader("./malhas/malha" + mapaId + ".txt"));
         this.filas = Integer.parseInt(in.readLine());
@@ -155,7 +155,7 @@ public class CMapa {
 
     }
 
-    public synchronized void setCarImage(Carro carro) {
+    public synchronized void definirCarroImagem(Carro carro) {
 
         int currentDir = carro.getEstradaAtual().getDirecao();
         int oldDir = 0;
@@ -233,7 +233,28 @@ public class CMapa {
     }
 
     public void carregarMapa() {
+        notificarTabela(matriz);
+    }
 
+    public void definirCarros(int value) {
+        this.quantidadeCarros = value;
+        if (value < 0) {
+            NotificaQauntiCarrosErros();
+            return;
+        }
+        notificaQuantiCarros(value);
+    }
+
+    private void NotificaQauntiCarrosErros() {
+        for (MapaObservador obs : mapObserver) {
+            obs.definirQuatCarrosErro();
+        }
+    }
+
+    private void notificaQuantiCarros(int value) {
+        for (MapaObservador obs : mapObserver) {
+            obs.definirQuatCarros(value);
+        }
     }
 
     private List<MapaObservador> mapObserver = new ArrayList<>();
@@ -244,11 +265,13 @@ public class CMapa {
         }
     }
 
-    public int getQuantiCarros() {
-        return quantidadeCarros;
+    private void notificarTabela(int[][] matriz) {
+        for (MapaObservador obs : mapObserver) {
+            obs.definirTabela(matriz, filas, colunas);
+        }
+
     }
-    
-    
+
     public int getQuantiCarros() {
         return quantidadeCarros;
     }
@@ -268,49 +291,94 @@ public class CMapa {
     }
 
     private void printCar(Celula road) {
-        road.receberCarro(createCar(road));
+        road.receberCarro(criarCarro(road));
     }
 
-    private Carro createCar(Celula road) {
+    private Carro criarCarro(Celula road) {
         Carro newCar = new Carro(carroId++, road);
-        setCarImage(newCar);
+        definirCarroImagem(newCar);
         CCarro driver = new CCarro(newCar, this.carroVeloc);
         driver.start();
         return newCar;
     }
 
-//    private int numMapa;
-//    private int fila;
-//    private int coluna;
-//    private int matriz[][];
-//    private Celula celulaMatriz[][];
-//
-//    private static CMapa instance = null;
-//
-//    public CMapa() {
-//    }
-//
-//    static CMapa getIntance() {
-//        if (instance == null) {
-//            instance = new CMapa();
-//        }
-//        return instance;
-//    }
-//
-//    private List<MapaObservador> mapObserver = new ArrayList<>();
-//
-//   public void setMapa(int id, boolean modo) throws IOException{
-//        this.numMapa = id;
-//        BufferedReader in = new BufferedReader(new FileReader("./malhas/malha" + numMapa + ".txt"));
-//        this.fila = Integer.parseInt(in.readLine());
-//        this.coluna = Integer.parseInt(in.readLine());
-//        matriz = new int[fila][coluna];
-//        for (int i = 0; i < fila; i++) {
-//            String fila[] = in.readLine().split("\t");
-//            for (int j = 0; j < coluna; j++) {
-//                matriz[i][j] = Integer.parseInt(fila[j]);
-//            }
-//        }
-//
-//    }
+    private void roadSpawner(Celula estrada) {
+        if (estrada != null) {
+            if (estrada.getPosicaoY() == 0) {
+                if (estrada.getDirecao() == 2) {
+                    estrada.setIsSpawner(true);
+                }
+            } else if (estrada.getPosicaoY() == (matriz[0].length - 1)) {
+                if (estrada.getDirecao() == 4) {
+                    estrada.setIsSpawner(true);
+                }
+            }
+
+            if (estrada.getPosicaoY() == 0) {
+                if (estrada.getDirecao() == 3) {
+                    estrada.setIsSpawner(true);
+                }
+            } else if (estrada.getPosicaoX() == (matriz.length - 1)) {
+                if (estrada.getDirecao() == 1) {
+                    estrada.setIsSpawner(true);
+                }
+            }
+        }
+    }
+
+    public ImageIcon estrada(int row, int collumn) {
+        if (matrizCelula[row][collumn].getCarro() == null) {
+            return new ImageIcon("./assets/asfalto.jpg");
+        }
+        return new ImageIcon(matrizCelula[row][collumn].getCarro().getImagem());
+    }
+
+    public void definirVelocidadeCarro(int velocity) {
+        if (velocity >= 0) {
+            this.carroVeloc = velocity;
+
+        } else {
+            velocidadeInvalida();
+        }
+
+    }
+
+    private void velocidadeInvalida() {
+        for (MapaObservador obs : mapObserver) {
+            obs.velocidadeInvalida();
+        }
+    }
+
+    public void iniciar() {
+        notificarBotaoDesativacao(true);
+        spawn = new CSpawner();
+        spawn.start();
+    }
+
+    public void parar() {
+        notificarBotaoDesativacao(false);
+        spawn.setOn(false);
+    }
+
+    private void notificarBotaoDesativacao(boolean on) {
+        for (MapaObservador obs : mapObserver) {
+            obs.definirBotao(on);
+        }
+    }
+    
+    
+    public void anexarMapa(MapaObservador obs) {
+        this.mapObserver.add(obs);
+    }
+
+    public void separar(MapaObservador obs) {
+        this.mapObserver.remove(obs);
+    }
+    
+    
+    public void definirInsercaoCarro(int velocidade) {
+        spawn.setVelocidade(velocidade);
+
+    }
+
 }
