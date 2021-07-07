@@ -338,9 +338,7 @@ public class CMapa {
         }
         return new ImageIcon(matrizCelula[row][collumn].getCarro().getImagem());
     }
-    
    
-     
 
     public void definirVelocidadeCarro(int velocity) {
         if (velocity >= 0) {

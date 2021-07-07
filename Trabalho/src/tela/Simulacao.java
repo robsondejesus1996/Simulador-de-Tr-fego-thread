@@ -177,15 +177,12 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
     private javax.swing.JTextField jtxt_qtdVeliculos;
     // End of variables declaration//GEN-END:variables
 
-    String[] images = new String[]{"./quarteiroes/1.png", "./quarteiroes/2.png", "./quarteiroes/3.png", "./quarteiroes/4.png", "./quarteiroes/5.png"};
-    private ImageIcon quarteirao = new ImageIcon(
-            images[(int) Math.floor(Math.random() * images.length)]);
 
-//    JLabel imageLabel = new JLabel();
-//   private ImageIcon quarteirao = new ImageIcon("./quarteiroes/1.png");
+    JLabel imageLabel = new JLabel();
+   private ImageIcon quarteirao = new ImageIcon("./quarteiroes/1.png");
     @Override
     public void definirQuatCarros(int value) {
-        jtxt_qtdVeliculos.setText("" + value);
+        jtxt_qtdVeliculos.setText("" + value);  
 
     }
 
