@@ -178,13 +178,11 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
     // End of variables declaration//GEN-END:variables
 
     String[] images = new String[]{"./quarteiroes/1.png", "./quarteiroes/2.png", "./quarteiroes/3.png", "./quarteiroes/4.png", "./quarteiroes/5.png"};
-     private ImageIcon quarteirao = new ImageIcon(
+    private ImageIcon quarteirao = new ImageIcon(
             images[(int) Math.floor(Math.random() * images.length)]);
-    
-    
+
 //    JLabel imageLabel = new JLabel();
 //   private ImageIcon quarteirao = new ImageIcon("./quarteiroes/1.png");
-
     @Override
     public void definirQuatCarros(int value) {
         jtxt_qtdVeliculos.setText("" + value);
@@ -242,29 +240,11 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
     }
 
     public ImageIcon paint(int fila, int coluna, int matriz[][]) {
-        int num = matriz[fila][coluna];
-
-        switch (num) {
-            case 0:
-                return quarteirao;
-            case 1:
-                return controleMapa.estradaEsq(fila, coluna);
-            case 2:
-                return controleMapa.estradaCima(fila, coluna);
-            case 3:
-                return controleMapa.estradaDir(fila, coluna);
-            case 4:
-                return controleMapa.estradaBaixo(fila, coluna);
-            case 12:
-                return controleMapa.estrada12(fila, coluna);
-            case 10:
-                return controleMapa.estrada10(fila, coluna);
-            case 11:
-                return controleMapa.estrada11(fila, coluna);
-            case 9:
-                return controleMapa.estrada9(fila, coluna);
+        if (matriz[fila][coluna] == 0) {
+            return quarteirao;
+        } else {
+            return controleMapa.Estrada(fila, coluna);
         }
-        return quarteirao;
 
     }
 

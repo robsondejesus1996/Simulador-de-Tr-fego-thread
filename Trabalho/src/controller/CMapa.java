@@ -332,61 +332,14 @@ public class CMapa {
         }
     }
 
-    public ImageIcon estradaCima(int row, int collumn) {
+    public ImageIcon Estrada(int row, int collumn) {
         if (matrizCelula[row][collumn].getCarro() == null) {
-            return new ImageIcon("./quarteiroes/ruaAlto.png");
+            return new ImageIcon("./quarteiroes/rua.png");
         }
         return new ImageIcon(matrizCelula[row][collumn].getCarro().getImagem());
     }
     
-     public ImageIcon estradaBaixo(int row, int collumn) {
-        if (matrizCelula[row][collumn].getCarro() == null) {
-            return new ImageIcon("./quarteiroes/ruaBaixo.png");
-        }
-        return new ImageIcon(matrizCelula[row][collumn].getCarro().getImagem());
-    }
-     
-      public ImageIcon estradaDir(int row, int collumn) {
-        if (matrizCelula[row][collumn].getCarro() == null) {
-            return new ImageIcon("./quarteiroes/ruaDireita.png");
-        }
-        return new ImageIcon(matrizCelula[row][collumn].getCarro().getImagem());
-    }
-      
-       public ImageIcon estradaEsq(int row, int collumn) {
-        if (matrizCelula[row][collumn].getCarro() == null) {
-            return new ImageIcon("./quarteiroes/ruaEsquerda.png");
-        }
-        return new ImageIcon(matrizCelula[row][collumn].getCarro().getImagem());
-    }
-       
-        public ImageIcon estrada12(int row, int collumn) {
-        if (matrizCelula[row][collumn].getCarro() == null) {
-            return new ImageIcon("./quarteiroes/rua12.png");
-        }
-        return new ImageIcon(matrizCelula[row][collumn].getCarro().getImagem());
-    }
-        
-           public ImageIcon estrada10(int row, int collumn) {
-        if (matrizCelula[row][collumn].getCarro() == null) {
-            return new ImageIcon("./quarteiroes/rua10.png");
-        }
-        return new ImageIcon(matrizCelula[row][collumn].getCarro().getImagem());
-    }
-           
-              public ImageIcon estrada11(int row, int collumn) {
-        if (matrizCelula[row][collumn].getCarro() == null) {
-            return new ImageIcon("./quarteiroes/rua11.png");
-        }
-        return new ImageIcon(matrizCelula[row][collumn].getCarro().getImagem());
-    }
-              
-               public ImageIcon estrada9(int row, int collumn) {
-        if (matrizCelula[row][collumn].getCarro() == null) {
-            return new ImageIcon("./quarteiroes/rua9.png");
-        }
-        return new ImageIcon(matrizCelula[row][collumn].getCarro().getImagem());
-    }
+   
      
 
     public void definirVelocidadeCarro(int velocity) {
