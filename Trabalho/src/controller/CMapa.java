@@ -58,22 +58,20 @@ public class CMapa {
 
     public void definirMapa(int id, boolean modo) throws IOException {
         this.mapaId = id;
-        try {
-            BufferedReader in = new BufferedReader(new FileReader("./malhas/malha" + mapaId + ".txt"));
-            this.filas = Integer.parseInt(in.readLine());
-            this.colunas = Integer.parseInt(in.readLine());
-            matriz = new int[filas][colunas];
-            for (int i = 0; i < filas; i++) {
-                String fila[] = in.readLine().split("\t");
-                for (int j = 0; j < colunas; j++) {
-                    matriz[i][j] = Integer.parseInt(fila[j]);
-                }
+
+        BufferedReader in = new BufferedReader(new FileReader("./malhas/malha" + mapaId + ".txt"));
+        this.filas = Integer.parseInt(in.readLine());
+        this.colunas = Integer.parseInt(in.readLine());
+        matriz = new int[filas][colunas];
+        for (int i = 0; i < filas; i++) {
+            String fila[] = in.readLine().split("\t");
+            for (int j = 0; j < colunas; j++) {
+                matriz[i][j] = Integer.parseInt(fila[j]);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
         converterMatrizCelula(modo);
-    }   
+    }
 
     private void converterMatrizCelula(boolean isMutex) {
         matrizCelula = new Celula[this.filas][this.colunas];
@@ -100,19 +98,38 @@ public class CMapa {
     }
 
     private void estradaSpawner(Celula estrada) {
+        if (estrada != null) {
+            if (estrada.getPosicaoY() == 0) {
+                if (estrada.getDirecao() == 2) {
+                    estrada.setIsSpawner(true);
+                }
+            } else if (estrada.getPosicaoY() == (matriz[0].length - 1)) {
+                if (estrada.getDirecao() == 4) {
+                    estrada.setIsSpawner(true);
+                }
+            }
 
+            if (estrada.getPosicaoX() == 0) {
+                if (estrada.getDirecao() == 3) {
+                    estrada.setIsSpawner(true);
+                }
+            } else if (estrada.getPosicaoX() == (matriz.length - 1)) {
+                if (estrada.getDirecao() == 1) {
+                    estrada.setIsSpawner(true);
+                }
+            }
+        }
     }
 
     public void definirProxCelula() {
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < colunas; j++) {
                 Celula road = matrizCelula[i][j];
-                if (road != null) {
+               if (road != null) {
                     try {
                         switch (road.getDirecao()) {
                             case 1:
                                 road.adicionarProxCelula(matrizCelula[i - 1][j]); //cima
-
                                 break;
                             case 2:
                                 road.adicionarProxCelula(matrizCelula[i][j + 1]); //direita
@@ -153,7 +170,6 @@ public class CMapa {
                                 break;
                         }
                     } catch (Exception e) {
-                        //array fica vazio
                     }
                 }
             }
@@ -288,12 +304,12 @@ public class CMapa {
             for (Celula road : roadLine) {
                 if (road != null && road.isSpawner()) {
                     roads.add(road);
+                
                 }
             }
         }
         Random rand = new Random();
         printCar(roads.get(rand.nextInt(roads.size())));
-
     }
 
     private void printCar(Celula road) {
@@ -338,7 +354,6 @@ public class CMapa {
         }
         return new ImageIcon(matrizCelula[row][collumn].getCarro().getImagem());
     }
-   
 
     public void definirVelocidadeCarro(int velocity) {
         if (velocity >= 0) {

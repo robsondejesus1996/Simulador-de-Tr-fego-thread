@@ -113,6 +113,12 @@ public abstract class Celula {
     public void setIsSpawner(boolean isSpawner) {
         this.Spawner = isSpawner;
     }
+
+    @Override
+    public String toString() {
+        return "Celula{" + "cruzamento=" + cruzamento + ", Spawner=" + Spawner + ", proxCelula=" + proxCelula + ", direcao=" + direcao + ", carro=" + carro + ", imagem=" + imagem + ", posicaoX=" + posicaoX + ", posicaoY=" + posicaoY + '}';
+    }
+    
     
 
 }

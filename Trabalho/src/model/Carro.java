@@ -36,6 +36,7 @@ public class Carro {
     
     public void definicaoImagem(int direcao){
         this.imagem = "./quarteiroes/carroAmarelo.png";
+                       
     }
 
     public int getCarroId() {
