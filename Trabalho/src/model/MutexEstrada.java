@@ -32,7 +32,7 @@ public class MutexEstrada extends Celula {
             semaforo.acquire();
             setCarro(carro);
         } catch (InterruptedException ex) {
-
+            Logger.getLogger(MutexEstrada.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             semaforo.release();
         }
