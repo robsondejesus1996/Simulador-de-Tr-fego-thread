@@ -5,7 +5,10 @@
  */
 package model;
 
+import static java.lang.Thread.sleep;
 import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +25,17 @@ public class MutexEstrada extends Celula {
 
     @Override
     public void receberCarro(Carro carro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            while (getCarro() != null) {
+                sleep(300);
+            }
+            semaforo.acquire();
+            setCarro(carro);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MutexEstrada.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            semaforo.release();
+        }
     }
 
     @Override
