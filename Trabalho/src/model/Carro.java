@@ -5,38 +5,32 @@
  */
 package model;
 
-import java.util.Random;
-
 /**
  *
  * @author Robson e Brenda
  */
 public class Carro {
-    
+
     private int carroId;
-    private int carroTipo;
     private String imagem;
     private int proxDirecao;
     private Celula estradaAtual;
     private Celula estradaVelha;
-    
-    public Carro(int carroId, Celula estraCelula){
+
+    public Carro(int carroId, Celula estraCelula) {
         this.carroId = carroId;
         this.estradaAtual = estraCelula;
         this.proxDirecao = 0;
-        definicaoTipo(5);
-        
+
     }
-    
-    public final void definicaoTipo(int numeroTipo){
-        Random numero = new Random();
-        this.carroTipo = numero.nextInt(numeroTipo) + 1;
-    }
-    
-    
-    public void definicaoImagem(int direcao){
-        this.imagem = "./quarteiroes/carroAmarelo.png";
-                       
+
+    public void definicaoImagem(int direcao) {
+        if (direcao == 2 || direcao == 4) {
+            this.imagem = "./quarteiroes/carro2.png";
+        } else {
+            this.imagem = "./quarteiroes/carro1.png";
+        }
+
     }
 
     public int getCarroId() {
@@ -45,14 +39,6 @@ public class Carro {
 
     public void setCarroId(int carroId) {
         this.carroId = carroId;
-    }
-
-    public int getCarroTipo() {
-        return carroTipo;
-    }
-
-    public void setCarroTipo(int carroTipo) {
-        this.carroTipo = carroTipo;
     }
 
     public String getImagem() {
@@ -86,6 +72,5 @@ public class Carro {
     public void setEstradaVelha(Celula estradaVelha) {
         this.estradaVelha = estradaVelha;
     }
-    
-    
+
 }

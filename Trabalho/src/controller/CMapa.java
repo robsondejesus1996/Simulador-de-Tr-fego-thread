@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 import model.Carro;
 import model.Celula;
 import model.MonitorEstrada;
-import model.MutexEstrada;
+import model.SemafaroEstrada;
 
 /**
  *
@@ -73,17 +73,17 @@ public class CMapa {
         converterMatrizCelula(modo);
     }
 
-    private void converterMatrizCelula(boolean isMutex) {
+    private void converterMatrizCelula(boolean semafaro) {
         matrizCelula = new Celula[this.filas][this.colunas];
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < colunas; j++) {
                 if (matriz[i][j] != 0) {
-                    MutexEstrada newMutex;
+                    SemafaroEstrada newSemafaro;
                     MonitorEstrada newMonitor;
-                    if (isMutex) {
-                        newMutex = new MutexEstrada(matriz[i][j], i, j);
-                        matrizCelula[i][j] = newMutex;
-                        estradaSpawner(newMutex);
+                    if (semafaro) {
+                        newSemafaro = new SemafaroEstrada(matriz[i][j], i, j);
+                        matrizCelula[i][j] = newSemafaro;
+                        estradaSpawner(newSemafaro);
                     } else {
                         newMonitor = new MonitorEstrada(matriz[i][j], i, j);
                         matrizCelula[i][j] = newMonitor;
@@ -178,25 +178,24 @@ public class CMapa {
     }
 
     public synchronized void definirCarroImagem(Carro carro) {
-
-        int currentDir = carro.getEstradaAtual().getDirecao();
-        int oldDir = 0;
+        int direcaoAtual = carro.getEstradaAtual().getDirecao();
+        int direcaoAnterior = 0;
         if (carro.getEstradaVelha() != null) {
-            oldDir = carro.getEstradaVelha().getDirecao();
+            direcaoAnterior = carro.getEstradaVelha().getDirecao();
         }
-        if (currentDir > 4) {
-            switch (currentDir) {
+        if (direcaoAtual > 4) {
+            switch (direcaoAtual) {
                 case 5:
-                    carro.definicaoImagem(1); //cima
+                    carro.definicaoImagem(1); 
                     break;
                 case 6:
-                    carro.definicaoImagem(2);//direita
+                    carro.definicaoImagem(2);
                     break;
                 case 7:
-                    carro.definicaoImagem(3);//baixo
+                    carro.definicaoImagem(1);
                     break;
                 case 8:
-                    carro.definicaoImagem(4);//esquerda
+                    carro.definicaoImagem(2);
                     break;
                 case 9:
                     if (carro.getProxDirecao() == 0) {
@@ -206,9 +205,9 @@ public class CMapa {
                     }
                     break;
                 case 10:
-                    if (oldDir <= 4) {
+                    if (direcaoAnterior <= 4) {
                         if (carro.getProxDirecao() == 0) {
-                            carro.definicaoImagem(4);
+                            carro.definicaoImagem(2);
                         } else {
                             carro.definicaoImagem(1);
                         }
@@ -216,37 +215,37 @@ public class CMapa {
                         if (carro.getProxDirecao() == 0) {
                             carro.definicaoImagem(1);
                         } else {
-                            carro.definicaoImagem(4);
+                            carro.definicaoImagem(2);
                         }
                     }
                     break;
                 case 11:
-                    if (oldDir <= 4) {
+                    if (direcaoAnterior <= 4) {
                         if (carro.getProxDirecao() == 0) {
                             carro.definicaoImagem(2);
                         } else {
-                            carro.definicaoImagem(3);
+                            carro.definicaoImagem(1);
                         }
                     } else {
 
-                        carro.definicaoImagem(3);
+                        carro.definicaoImagem(1);
                     }
                     break;
                 case 12:
-                    if (oldDir <= 4) {
+                    if (direcaoAnterior <= 4) {
                         if (carro.getProxDirecao() == 0) {
-                            carro.definicaoImagem(3);
+                            carro.definicaoImagem(1);
                         } else {
-                            carro.definicaoImagem(4);
+                            carro.definicaoImagem(2);
                         }
                     } else {
-                        carro.definicaoImagem(4);
+                        carro.definicaoImagem(2);
                     }
                     break;
             }
 
         } else {
-            carro.definicaoImagem(currentDir);
+            carro.definicaoImagem(direcaoAtual);
         }
     }
 

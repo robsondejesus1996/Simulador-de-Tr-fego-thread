@@ -7,18 +7,18 @@ package model;
 
 import static java.lang.Thread.sleep;
 import java.util.concurrent.Semaphore;
-import java.util.logging.Level;
+import java.util.logging.Level; 
 import java.util.logging.Logger;
 
 /**
  *
  * @author Robson e Brenda
  */
-public class MutexEstrada extends Celula {
+public class SemafaroEstrada extends Celula {
 
-    private final Semaphore semaforo;//implementação pronta
+    private final Semaphore semaforo;
 
-    public MutexEstrada(int direcao, int posicaoX, int posicaoY) {
+    public SemafaroEstrada(int direcao, int posicaoX, int posicaoY) {
         super(direcao, posicaoX, posicaoY);
         this.semaforo = new Semaphore(1);
     }
@@ -32,7 +32,7 @@ public class MutexEstrada extends Celula {
             semaforo.acquire();
             setCarro(carro);
         } catch (InterruptedException ex) {
-            Logger.getLogger(MutexEstrada.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SemafaroEstrada.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             semaforo.release();
         }
