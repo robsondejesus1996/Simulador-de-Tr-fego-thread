@@ -7,20 +7,16 @@ package controller.observador;
 
 /**
  *
- * @author Robson e Brenda 
+ * @author Robson e Brenda
  */
 public interface MapaObservador {
-    
+
     void definirQuatCarros(int value);
-    
-    void definirQuatCarrosErro();
-    
+
     public void definirTabela(int[][] matriz, int rows, int collums);
-    
+
     public void redefinirPintar();
-    
+
     public void definirBotao(boolean on);
-    
-    public void velocidadeInvalida();
-    
+
 }

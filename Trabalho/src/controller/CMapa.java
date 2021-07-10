@@ -125,7 +125,7 @@ public class CMapa {
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < colunas; j++) {
                 Celula road = matrizCelula[i][j];
-               if (road != null) {
+                if (road != null) {
                     try {
                         switch (road.getDirecao()) {
                             case 1:
@@ -186,7 +186,7 @@ public class CMapa {
         if (direcaoAtual > 4) {
             switch (direcaoAtual) {
                 case 5:
-                    carro.definicaoImagem(1); 
+                    carro.definicaoImagem(1);
                     break;
                 case 6:
                     carro.definicaoImagem(2);
@@ -257,37 +257,30 @@ public class CMapa {
         notificarTabela(matriz);
     }
 
-    public void definirCarros(int value) {
-        this.quantidadeCarros = value;
-        if (value < 0) {
-            NotificaQuantiCarrosErros();
+    public void definirCarros(int valor) {
+        this.quantidadeCarros = valor;
+        if (valor > 0) {
+        notificaQuantiCarros(valor);
             return;
         }
-        notificaQuantiCarros(value);
     }
 
-    private void NotificaQuantiCarrosErros() {
-        for (MapaObservador obs : mapObserver) {
-            obs.definirQuatCarrosErro();
+    private void notificaQuantiCarros(int valor) {
+        for (MapaObservador obs : mapaObserver) {
+            obs.definirQuatCarros(valor);
         }
     }
 
-    private void notificaQuantiCarros(int value) {
-        for (MapaObservador obs : mapObserver) {
-            obs.definirQuatCarros(value);
-        }
-    }
-
-    private List<MapaObservador> mapObserver = new ArrayList<>();
+    private List<MapaObservador> mapaObserver = new ArrayList<>();
 
     public void notificarRepintar() {
-        for (MapaObservador obs : mapObserver) {
+        for (MapaObservador obs : mapaObserver) {
             obs.redefinirPintar();
         }
     }
 
     private void notificarTabela(int[][] matriz) {
-        for (MapaObservador obs : mapObserver) {
+        for (MapaObservador obs : mapaObserver) {
             obs.definirTabela(matriz, filas, colunas);
         }
 
@@ -303,7 +296,7 @@ public class CMapa {
             for (Celula road : roadLine) {
                 if (road != null && road.isSpawner()) {
                     roads.add(road);
-                
+
                 }
             }
         }
@@ -358,16 +351,8 @@ public class CMapa {
         if (velocity >= 0) {
             this.carroVeloc = velocity;
 
-        } else {
-            velocidadeInvalida();
         }
 
-    }
-
-    private void velocidadeInvalida() {
-        for (MapaObservador obs : mapObserver) {
-            obs.velocidadeInvalida();
-        }
     }
 
     public void iniciar() {
@@ -382,17 +367,17 @@ public class CMapa {
     }
 
     private void notificarBotaoDesativacao(boolean on) {
-        for (MapaObservador obs : mapObserver) {
+        for (MapaObservador obs : mapaObserver) {
             obs.definirBotao(on);
         }
     }
 
     public void anexarMapa(MapaObservador obs) {
-        this.mapObserver.add(obs);
+        this.mapaObserver.add(obs);
     }
 
     public void separar(MapaObservador obs) {
-        this.mapObserver.remove(obs);
+        this.mapaObserver.remove(obs);
     }
 
     public void definirInsercaoCarro(int velocidade) {
