@@ -260,13 +260,13 @@ public class CMapa {
     public void definirCarros(int value) {
         this.quantidadeCarros = value;
         if (value < 0) {
-            NotificaQauntiCarrosErros();
+            NotificaQuantiCarrosErros();
             return;
         }
         notificaQuantiCarros(value);
     }
 
-    private void NotificaQauntiCarrosErros() {
+    private void NotificaQuantiCarrosErros() {
         for (MapaObservador obs : mapObserver) {
             obs.definirQuatCarrosErro();
         }
