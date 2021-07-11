@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tela;
+package telas;
 
 import controller.CMapa;
 import controller.observador.MapaObservador;
