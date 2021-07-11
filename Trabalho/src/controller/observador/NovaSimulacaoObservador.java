@@ -9,7 +9,7 @@ package controller.observador;
  *
  * @author Robson e Brenda 
  */
-public interface NovoJogoObservador {
+public interface NovaSimulacaoObservador {
     
     void escolheMapa();
     
