@@ -16,12 +16,16 @@ public class Carro {
     private int proxDirecao;
     private Celula estradaAtual;
     private Celula estradaVelha;
+    private int velocidade;
 
     public Carro(int carroId, Celula estraCelula) {
         this.carroId = carroId;
         this.estradaAtual = estraCelula;
         this.proxDirecao = 0;
 
+    }
+
+    public Carro() {
     }
 
     public void definicaoImagem(int direcao) {
@@ -31,6 +35,14 @@ public class Carro {
             this.imagem = "./quarteiroes/carro1.png";
         }
 
+    }
+
+    public int getVelocidade() {
+        return velocidade;
+    }
+
+    public void setVelocidade(int velocidade) {
+        this.velocidade = velocidade;
     }
 
     public int getCarroId() {

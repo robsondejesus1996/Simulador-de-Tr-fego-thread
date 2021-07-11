@@ -349,10 +349,11 @@ public class CMapa {
     }
 
     public void definirVelocidadeCarro(int velocity) {
+        Carro c = new Carro();
         if (velocity >= 0) {
             this.carroVeloc = Double.valueOf((Math.random() * (1500 - 500)) + 500).intValue();
-            System.out.println("Velocidade do carro: " + carroId + ": " + carroVeloc + " milissegundos");
-
+            c.setVelocidade(velocity);
+            System.out.println("Velocidade do carro: " + carroId + ": " + c.getVelocidade() + " milissegundos");
         }
 
     }

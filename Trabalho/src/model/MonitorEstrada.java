@@ -15,7 +15,7 @@ public class MonitorEstrada extends Celula {
     public void receberCarro(Carro carro) {
         try {
             while (getCarro() != null) {
-                wait(10);
+                wait(carro.getVelocidade());
             }
             setCarro(carro);
         } 

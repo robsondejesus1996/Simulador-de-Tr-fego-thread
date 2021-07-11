@@ -23,11 +23,12 @@ public class SemafaroEstrada extends Celula {
         this.semaforo = new Semaphore(1);
     }
 
+    
     @Override
     public void receberCarro(Carro carro) {
         try {
             while (getCarro() != null) {
-                sleep(300);
+                sleep(carro.getVelocidade());
             }
             semaforo.acquire();
             setCarro(carro);
