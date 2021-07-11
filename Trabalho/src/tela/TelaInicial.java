@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package telas;
+package tela;
 
 import controller.CJogo;
 import controller.observador.NovoJogoObservador;
@@ -61,7 +61,6 @@ public class TelaInicial extends javax.swing.JFrame implements NovoJogoObservado
         jRadio_monitores = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
 
         jb_mapa1.setBackground(new java.awt.Color(255, 255, 255));
         jb_mapa1.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
@@ -90,7 +89,6 @@ public class TelaInicial extends javax.swing.JFrame implements NovoJogoObservado
             }
         });
 
-        jRadio_semafaro.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jRadio_semafaro.setText("Semáfaro");
         jRadio_semafaro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +96,6 @@ public class TelaInicial extends javax.swing.JFrame implements NovoJogoObservado
             }
         });
 
-        jRadio_monitores.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jRadio_monitores.setText("Monitor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,7 +108,7 @@ public class TelaInicial extends javax.swing.JFrame implements NovoJogoObservado
                 .addComponent(jRadio_semafaro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jRadio_monitores)
-                .addGap(82, 82, 82))
+                .addGap(70, 70, 70))
             .addComponent(jb_mapa2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
             .addComponent(jb_mapa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -122,7 +119,7 @@ public class TelaInicial extends javax.swing.JFrame implements NovoJogoObservado
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadio_monitores)
                     .addComponent(jRadio_semafaro))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jb_mapa1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jb_mapa2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,6 +183,6 @@ public class TelaInicial extends javax.swing.JFrame implements NovoJogoObservado
     public void escolheMapa() {
         simulacao = Simulacao.getIntance();
         simulacao.setVisible(true);
-        this.dispose();
+        this.setVisible(false);
     }
 }
