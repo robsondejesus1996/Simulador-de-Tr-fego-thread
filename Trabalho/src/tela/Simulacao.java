@@ -110,6 +110,8 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jTable1.setBackground(java.awt.SystemColor.control);
+
         jB_finalizar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jB_finalizar.setText("Finalizar simulação");
         jB_finalizar.addActionListener(new java.awt.event.ActionListener() {
