@@ -29,7 +29,7 @@ public class CMapa {
     private int filas;
     private int colunas;
     private int quantidadeCarros;
-    private int carroVeloc = 300;
+    private int carroVeloc;
     private static CMapa instance = null;
     private CSpawner spawn;
 
@@ -260,7 +260,7 @@ public class CMapa {
     public void definirCarros(int valor) {
         this.quantidadeCarros = valor;
         if (valor > 0) {
-        notificaQuantiCarros(valor);
+            notificaQuantiCarros(valor);
             return;
         }
     }
@@ -311,6 +311,7 @@ public class CMapa {
     private Carro criarCarro(Celula road) {
         Carro newCar = new Carro(carroId++, road);
         definirCarroImagem(newCar);
+        definirVelocidadeCarro(carroVeloc);
         CCarro driver = new CCarro(newCar, this.carroVeloc);
         driver.start();
         return newCar;
@@ -349,7 +350,8 @@ public class CMapa {
 
     public void definirVelocidadeCarro(int velocity) {
         if (velocity >= 0) {
-            this.carroVeloc = velocity;
+            this.carroVeloc = Double.valueOf((Math.random() * (1500 - 500)) + 500).intValue();
+            System.out.println("Velocidade do carro: " + carroId + ": " + carroVeloc + " milissegundos");
 
         }
 
