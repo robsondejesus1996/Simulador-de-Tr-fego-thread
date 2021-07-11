@@ -17,3 +17,10 @@ Trabalho realizado para a disciplina de Desenvolvimento de Sistemas Paralelos e 
 * [Modelagem e diagramas](#modelagem)
 
 ---
+
+## [Equipe](#equipe)
+ - [**Robson de Jesus**](mailto:robson.jesus@edu.udesc.br) - [robsondejesus1996](https://github.com/robsondejesus1996)
+ - [**Brenda Paetzoldt Silva**](mailto:brenda.bps@edu.udesc.br) - [brendapaetzoldt](https://github.com/brendapaetzoldt)
+
+
+---
