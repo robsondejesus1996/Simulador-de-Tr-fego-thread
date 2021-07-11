@@ -5,20 +5,20 @@
  */
 package tela;
 
-import controller.Csimulacao;
+import controller.CJogo;
+import controller.observador.NovoJogoObservador;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import controller.observador.NovaSimulacaoObservador;
 
 
 /**
  *
  * @author Brenda Paetzoldt e Robson de Jesus
  */
-public class TelaInicial extends javax.swing.JFrame implements NovaSimulacaoObservador {
+public class TelaInicial extends javax.swing.JFrame implements NovoJogoObservador {
 
-    Csimulacao controlMap;
+    CJogo controlMap;
     Simulacao simulacao;
 
     private static TelaInicial instance = null;
@@ -36,7 +36,7 @@ public class TelaInicial extends javax.swing.JFrame implements NovaSimulacaoObse
     public TelaInicial() {
         initComponents();
         setLocationRelativeTo(null);
-        controlMap = Csimulacao.getIntance();
+        controlMap = CJogo.getIntance();
         controlMap.attachMap(this);
         buttonGroup.add(jRadio_semafaro);
         buttonGroup.add(jRadio_monitores);

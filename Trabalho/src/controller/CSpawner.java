@@ -18,7 +18,7 @@ public class CSpawner extends Thread {
     CMapa controller = CMapa.getIntance();
 
     private boolean on = true;
-    private int velocidade;
+    private int velocidade = 500;
 
     public void setVelocidade(int velocidade) {
         this.velocidade = velocidade;

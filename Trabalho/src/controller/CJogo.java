@@ -1,24 +1,24 @@
 package controller;
 
+import controller.observador.NovoJogoObservador;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import controller.observador.NovaSimulacaoObservador;
 
 /**
  *
  * @author Brenda Paetzoldt e Robson de Jesus
  */
-public class Csimulacao {
+public class CJogo {
 
-    private Csimulacao() {
+    private CJogo() {
 
     }
-    private static Csimulacao instance = null;
+    private static CJogo instance = null;
 
-    public static Csimulacao getIntance() {
+    public static CJogo getIntance() {
         if (instance == null) {
-            instance = new Csimulacao();
+            instance = new CJogo();
         }
         return instance;
     }
@@ -29,18 +29,18 @@ public class Csimulacao {
         notificaNovoJogo();
     }
 
-    private List<NovaSimulacaoObservador> criaObsJogo = new ArrayList<>();
+    private List<NovoJogoObservador> criaObsJogo = new ArrayList<>();
 
-    public void attachMap(NovaSimulacaoObservador obs) {
+    public void attachMap(NovoJogoObservador obs) {
         this.criaObsJogo.add(obs);
     }
 
-    public void detach(NovaSimulacaoObservador obs) {
+    public void detach(NovoJogoObservador obs) {
         this.criaObsJogo.remove(obs);
     }
 
     private void notificaNovoJogo() {
-        for (NovaSimulacaoObservador obs : criaObsJogo) {
+        for (NovoJogoObservador obs : criaObsJogo) {
             obs.escolheMapa();
         }
     }

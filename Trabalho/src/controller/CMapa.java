@@ -347,13 +347,13 @@ public class CMapa {
         return new ImageIcon(matrizCelula[row][collumn].getCarro().getImagem());
     }
 
-//    public void definirVelocidadeCarro(int velocity) {
-//        velocity = 200;
-//            this.carroVeloc = velocity;
-//
-//        
-//
-//    }
+    public void definirVelocidadeCarro(int velocity) {
+        if (velocity >= 0) {
+            this.carroVeloc = velocity;
+
+        }
+
+    }
 
     public void iniciar() {
         notificarBotaoDesativacao(true);
