@@ -214,6 +214,7 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
 
         modeloTab.setRowCount(filas);
         modeloTab.setColumnCount(colunas);
+        jTable1.setIntercellSpacing(new Dimension (1,1));
         jTable1.setRowHeight(30);
         jTable1.setModel(modeloTab);
         jTable1.setDefaultRenderer(Object.class, new ImagemMapa());
