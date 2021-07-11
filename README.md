@@ -96,4 +96,8 @@ ii) Saída: posição final da pista que está em uma das bordas da malha.<br>
 
 Diagrama de Classes
 
+<div align="center">
+    <img src="![classes](https://user-images.githubusercontent.com/31260719/125197629-d682b880-e234-11eb-82f9-72102269d0c8.png)"/>
+</div>
+
 Observer
