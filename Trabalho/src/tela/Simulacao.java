@@ -217,15 +217,14 @@ public class Simulacao extends javax.swing.JFrame implements MapaObservador {
         jTable1.setRowHeight(30);
         jTable1.setModel(modeloTab);
         jTable1.setDefaultRenderer(Object.class, new ImagemMapa());
+        jTable1.setIntercellSpacing(new Dimension(1, 1));
+
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setPreferredSize(new Dimension(30, 30));
         for (int i = 0; i < jTable1.getColumnModel().getColumnCount(); i++) {
             TableColumn column = jTable1.getColumnModel().getColumn(i);
             column.setHeaderRenderer(renderer);
-            column.setPreferredWidth(30);
-
-            if (matriz.length == 10) {
-                column.setPreferredWidth(20);
-            }
+            column.setPreferredWidth(20);
         }
 
     }
