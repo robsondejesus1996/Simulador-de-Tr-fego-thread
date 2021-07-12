@@ -102,4 +102,5 @@ Diagrama de Classes
 
 Observer
 
-![observer](https://user-images.githubusercontent.com/31260719/125197833-a7b91200-e235-11eb-9e7e-8abc7beda719.png)
+![observer_a](https://user-images.githubusercontent.com/31260719/125356134-3021da80-e33c-11eb-9d8e-24685e550046.png)
+
